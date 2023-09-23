@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
+    xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets">
+<h:head>
+    <title>Contact</title>
+</h:head>
+<h:body>
+    <ui:remove>
+    </ui:remove>
+    <h:panelGrid columns="2">
+   <f:facet name="header">
+        <h:outputText value="Contact information" />
+    </f:facet>
+    <h:outputLabel for="email" value="Email" />
+    <h:outputText value="${contactView.contact.email}" />
+    <h:outputLabel for="firstname" value="First name" />
+    <h:outputText value="${contactView.contact.firstName}" />
+    <h:outputLabel for="lastname" value="Last name" />
+    <h:outputText value="${contactView.contact.lastName}" />
+    <h:outputLabel for="phonenumber" value="Phone number" />
+    <h:outputText value="${contactView.contact.phoneNumber}" />
+    <h:outputLabel for="birthdate" value="Birthday" />
+    <h:outputText value="${contactView.contact.birthDate}" />
+</h:panelGrid>
+<p><h:link value = "Back to contact list" outcome = "contactlist" /></p>
+</h:body>
+</html>

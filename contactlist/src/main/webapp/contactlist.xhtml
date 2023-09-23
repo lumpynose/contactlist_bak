@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
+    xmlns:p="http://primefaces.org/ui" xmlns:h="jakarta.faces.html"
+    xmlns:ui="jakarta.faces.facelets">
+<h:head>
+    <title>Contact list</title>
+</h:head>
+<h:body>
+    <h1>Contact list</h1>
+    <p:dataTable var="contact" value="#{contactList.contacts}"
+        rowStyleClass="zip" stripedRows="true" size="small"
+        expandedRow="false">
+        <f:facet name="header">
+        List of Contacts
+    </f:facet>
+        <p:column>
+            <f:facet name="header">
+            Email
+            </f:facet>
+            #{contact.email}
+        </p:column>
+        <p:column>
+            <f:facet name="header">
+            First name
+            </f:facet>
+            #{contact.firstName}
+        </p:column>
+        <p:column>
+            <f:facet name="header">
+            Last Name
+            </f:facet>
+            #{contact.lastName}
+        </p:column>
+        <p:column>
+            <f:facet name="header">
+            View
+            </f:facet>
+            <p:commandLink action="#{contactView.viewContact(contact.id)}">
+                <h:outputText value="View contact" />
+            </p:commandLink>
+        </p:column>
+        <p:column>
+            <f:facet name="header">
+            Delete
+            </f:facet>
+            <p:commandLink action="#{contactView.delete(contact.id)}">
+                <h:outputText value="Delete contact" />
+            </p:commandLink>
+        </p:column>
+    </p:dataTable>
+    <ui:remove>
+        <p:dataView var="contact" value="${contactList.contacts}">
+            <p:dataViewGridItem>
+                <p:panel header="#{contact.id}"
+                    style="text-align:center">
+                    <h:panelGrid columns="2" style="width:100%">
+                        <h:outputText value="#{contact.id}" />
+                        <h:outputText value="#{contact.email}" />
+                    </h:panelGrid>
+                </p:panel>
+            </p:dataViewGridItem>
+            <hr />
+            <p:dataViewListItem>
+                <h:panelGrid columns="2" style="width:100%">
+                    <p:outputPanel>
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <h:outputText value="Id:" />
+                            <h:outputText value="#{contact.id}"
+                                style="font-weight: bold" />
+
+                            <h:outputText value="email:" />
+                            <h:outputText value="#{contact.email}"
+                                style="font-weight: bold" />
+                        </h:panelGrid>
+                    </p:outputPanel>
+                </h:panelGrid>
+            </p:dataViewListItem>
+        </p:dataView>
+    </ui:remove>
+    <hr />
+    <h:form>
+        <h:dataTable id="table" value="${contactList.contacts}"
+            var="contact">
+            <h:column>${contact.id}</h:column>
+            <h:column>${contact.email}</h:column>
+            <h:column>
+                <h:commandLink id="submit" value="Contact page"
+                    action="#{contactView.submit(contact.id)}" />
+            </h:column>
+        </h:dataTable>
+    </h:form>
+</h:body>
+</html>
