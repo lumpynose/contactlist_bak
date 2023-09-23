@@ -11,7 +11,6 @@ import jakarta.inject.Singleton;
 @Model
 @Singleton
 public class LoggerProducer {
-
     @Produces
     public Logger produceLogger(final InjectionPoint injectionPoint) {
         return LoggerFactory
