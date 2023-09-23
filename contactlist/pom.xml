@@ -4,9 +4,9 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.objecteffects</groupId>
     <artifactId>contactlist</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>contactlist-0.0.1</name>
+    <name>contactlist-0.0.2</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
