@@ -18,7 +18,7 @@ public class Contact implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Column(nullable = false)
     private @NotNull String firstName;
     @Column(nullable = false)
@@ -31,11 +31,11 @@ public class Contact implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date birthDate;
 
-    public long getId() {
+    public Long getId() {
         return this.id;
     }
 
-    public void setId(final long _id) {
+    public void setId(final Long _id) {
         this.id = _id;
     }
 

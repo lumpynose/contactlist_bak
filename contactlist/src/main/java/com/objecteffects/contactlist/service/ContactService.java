@@ -21,23 +21,28 @@ public class ContactService implements Serializable {
     @Inject
     private transient Logger log;
 
-    public void create(final Contact contact) {
+    public void addContact(final Contact contact) {
         this.entityManager.persist(contact);
     }
 
-    public List<Contact> list() {
-        this.log.info("list");
+    public List<Contact> getContacts() {
+        this.log.info("get contacts");
 
         return this.entityManager.createQuery("select c from Contact c",
                 Contact.class).getResultList();
     }
 
     public Contact getContact(final Long id) {
+        this.log.info("get contact, {}", id);
+
         return this.entityManager.find(Contact.class, id);
     }
 
     public void deleteContact(final Long id) {
+        this.log.info("delete contact, {}", id);
+
         final Contact contact = this.entityManager.find(Contact.class, id);
+
         if (contact != null) {
             this.log.info("removing {} {}", contact.getFirstName(),
                     contact.getLastName());

@@ -1,7 +1,6 @@
 package com.objecteffects.contactlist.view;
 
 import java.io.Serializable;
-import java.util.List;
 
 import org.slf4j.Logger;
 
@@ -18,8 +17,6 @@ import jakarta.inject.Named;
 public class ContactList implements Serializable {
     private static final long serialVersionUID = -570500230181100578L;
 
-    private List<Contact> contacts;
-
     @Inject
     private ContactService contactService;
     @Inject
@@ -27,16 +24,10 @@ public class ContactList implements Serializable {
 
     @PostConstruct
     public void init() {
-        this.contacts = this.contactService.list();
         this.log.warn("starting contactlist-0.0.2");
     }
 
-    public List<Contact> getContacts() {
-        return this.contacts;
-    }
-
     public Contact getContact(final Long id) {
-        this.log.info("get {}", id);
         return this.contactService.getContact(id);
     }
 

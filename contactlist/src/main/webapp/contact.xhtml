@@ -10,20 +10,25 @@
     <ui:remove>
     </ui:remove>
     <h:panelGrid columns="2">
-   <f:facet name="header">
-        <h:outputText value="Contact information" />
-    </f:facet>
-    <h:outputLabel for="email" value="Email" />
-    <h:outputText value="${contactView.contact.email}" />
-    <h:outputLabel for="firstname" value="First name" />
-    <h:outputText value="${contactView.contact.firstName}" />
-    <h:outputLabel for="lastname" value="Last name" />
-    <h:outputText value="${contactView.contact.lastName}" />
-    <h:outputLabel for="phonenumber" value="Phone number" />
-    <h:outputText value="${contactView.contact.phoneNumber}" />
-    <h:outputLabel for="birthdate" value="Birthday" />
-    <h:outputText value="${contactView.contact.birthDate}" />
-</h:panelGrid>
-<p><h:link value = "Back to contact list" outcome = "contactlist" /></p>
+        <f:facet name="header">
+            <h:outputText value="Contact information" />
+        </f:facet>
+        <h:outputLabel for="email" value="Email" />
+        <h:outputText value="#{contactView.contact.email}" />
+        <h:outputLabel for="firstname" value="First name" />
+        <h:outputText value="#{contactView.contact.firstName}" />
+        <h:outputLabel for="lastname" value="Last name" />
+        <h:outputText value="#{contactView.contact.lastName}" />
+        <h:outputLabel for="phonenumber" value="Phone number" />
+        <h:outputText value="#{contactView.contact.phoneNumber}" />
+        <h:outputLabel for="birthdate" value="Birthday" />
+        <h:outputText value="#{contactView.contact.birthDate}" />
+    </h:panelGrid>
+    <p>
+        <h:messages />
+    </p>
+    <p>
+        <h:link value="Back to contact list" outcome="contactlist" />
+    </p>
 </h:body>
 </html>
