@@ -1,11 +1,10 @@
-package com.objecteffects.contactlist.service;
+package org.objecteffects.contactlist.service;
 
 import java.io.Serializable;
 import java.util.List;
 
+import org.objecteffects.contactlist.model.Contact;
 import org.slf4j.Logger;
-
-import com.objecteffects.contactlist.model.Contact;
 
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
@@ -26,25 +25,25 @@ public class ContactService implements Serializable {
     }
 
     public List<Contact> getContacts() {
-        this.log.info("get contacts");
+        this.log.debug("get contacts");
 
         return this.entityManager.createQuery("select c from Contact c",
                 Contact.class).getResultList();
     }
 
     public Contact getContact(final Long id) {
-        this.log.info("get contact, {}", id);
+        this.log.debug("get contact, {}", id);
 
         return this.entityManager.find(Contact.class, id);
     }
 
     public void deleteContact(final Long id) {
-        this.log.info("delete contact, {}", id);
+        this.log.debug("delete contact, {}", id);
 
         final Contact contact = this.entityManager.find(Contact.class, id);
 
         if (contact != null) {
-            this.log.info("removing {} {}", contact.getFirstName(),
+            this.log.debug("removing {} {}", contact.getFirstName(),
                     contact.getLastName());
             this.entityManager.remove(contact);
         }

@@ -1,4 +1,4 @@
-package com.objecteffects.contactlist.model;
+package org.objecteffects.contactlist.model;
 
 import java.io.Serializable;
 import java.util.Date;

@@ -1,4 +1,4 @@
-package com.objecteffects.contactlist.logging;
+package org.objecteffects.contactlist.logging;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,5 +16,4 @@ public class LoggerProducer {
         return LoggerFactory
                 .getLogger(injectionPoint.getMember().getDeclaringClass());
     }
-
 }

@@ -1,11 +1,10 @@
-package com.objecteffects.contactlist.view;
+package org.objecteffects.contactlist.view;
 
 import java.io.Serializable;
 
+import org.objecteffects.contactlist.model.Contact;
+import org.objecteffects.contactlist.service.ContactService;
 import org.slf4j.Logger;
-
-import com.objecteffects.contactlist.model.Contact;
-import com.objecteffects.contactlist.service.ContactService;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;

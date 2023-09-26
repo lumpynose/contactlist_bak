@@ -40,16 +40,28 @@
                 </f:facet>
                 <pf:commandLink
                     action="#{contactView.viewContact(contact.id)}">
-                    <h:outputText value="View contact" />
+                    <h:outputText value="View" />
                 </pf:commandLink>
             </pf:column>
             <pf:column>
                 <f:facet name="header">
                 Delete
                 </f:facet>
-                <pf:commandLink action="#{contactView.deleteContact(contact.id)}">
-                    <h:outputText value="Delete contact" />
-                </pf:commandLink>
+    <ui:remove>
+                <pf:commandButton type="button" value="Delete"
+                    onclick="PF('cd').show()">
+                    <f:param name="id" value="contact.id" />
+                </pf:commandButton>
+                <pf:confirmDialog header="Initiating delete process"
+                    severity="alert" widgetVar="cd">
+                    <pf:commandButton value="Yes"
+                        action="#{contactView.deleteContact(contact.id)}"
+                        oncomplete="PF('cd').hide()">
+                    </pf:commandButton>
+                    <pf:commandButton value="No"
+                        onclick="PF('cd').hide();" type="button" />
+                </pf:confirmDialog>
+    </ui:remove>
             </pf:column>
         </pf:dataTable>
     </h:form>
@@ -57,5 +69,11 @@
     <p>
         <h:messages />
     </p>
+                <ui:remove>
+                    <pf:commandLink
+                        action="#{contactView.deleteContact(contact.id)}">
+                        <h:outputText value="Delete contact" />
+                    </pf:commandLink>
+                </ui:remove>
 </h:body>
 </html>
