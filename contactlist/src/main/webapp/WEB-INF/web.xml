@@ -7,7 +7,8 @@
 
     <context-param>
         <param-name>
-            jakarta.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
+            jakarta.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL
+        </param-name>
         <param-value>true</param-value>
     </context-param>
 
@@ -23,10 +24,13 @@
     </servlet-mapping>
 
     <data-source>
-        <name>java:global/DataSourceName</name>
+        <name>java:global/DataSourceContacts</name>
         <class-name>org.postgresql.ds.PGSimpleDataSource</class-name>
-        <url>jdbc:postgresql://192.168.50.6/test</url>
-   </data-source>
+        <server-name>192.168.50.7</server-name>
+        <database-name>test</database-name>
+        <user>test</user>
+        <password>secret</password>
+    </data-source>
 
     <welcome-file-list>
         <welcome-file>contactlist.xhtml</welcome-file>
