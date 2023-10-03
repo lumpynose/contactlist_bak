@@ -45,12 +45,6 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.primefaces</groupId>
-            <artifactId>primefaces</artifactId>
-            <version>12.0.0</version>
-            <classifier>jakarta</classifier>
-        </dependency>
-        <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>42.6.0</version>
@@ -60,11 +54,19 @@
             <artifactId>log4j-slf4j-impl</artifactId>
             <version>2.9.0</version>
         </dependency>
+<!--
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>12.0.0</version>
+            <classifier>jakarta</classifier>
+        </dependency>
         <dependency>
             <groupId>org.omnifaces</groupId>
             <artifactId>omnifaces</artifactId>
             <version>4.3</version>
         </dependency>
+-->
 <!--
 -->
     </dependencies>

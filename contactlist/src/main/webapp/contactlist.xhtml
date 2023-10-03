@@ -2,15 +2,21 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
-    xmlns:pf="http://primefaces.org/ui" xmlns:h="jakarta.faces.html"
-    xmlns:ui="jakarta.faces.facelets">
+    xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets">
 <h:head>
+    <h:outputStylesheet name="css/stylesheet.css" />
     <title>Contact list 2</title>
 </h:head>
 <h:body>
     <h1>Contact list 2</h1>
     <h:form>
-        <h:dataTable var="contact" value="#{contactList.contacts}">
+        <h:dataTable var="contact" value="${contactList.contacts}"
+            captionClass="list-caption"
+            columnClasses="list-column-center, list-column-left,
+            list-column-right, list-column-center"
+            footerClass="list-footer" headerClass="list-header"
+            rowClasses="list-row-even, list-row-odd"
+            styleClass="list-background">
             <f:facet name="header">
             List of Contacts
             </f:facet>
@@ -18,25 +24,26 @@
                 <f:facet name="header">
                 Email
                 </f:facet>
-                #{contact.email}
+                ${contact.email}
             </h:column>
             <h:column>
                 <f:facet name="header">
                 First name
                 </f:facet>
-                #{contact.firstName}
+                ${contact.firstName}
             </h:column>
             <h:column>
                 <f:facet name="header">
                 Last Name
                 </f:facet>
-                #{contact.lastName}
+                ${contact.lastName}
             </h:column>
             <h:column>
                 <f:facet name="header">
                 View
                 </f:facet>
-                <h:commandLink action="#{contactView.viewContact(contact.id)}"
+                <h:commandLink
+                    action="#{contactView.viewContact(contact.id)}"
                     value="View">
                 </h:commandLink>
             </h:column>

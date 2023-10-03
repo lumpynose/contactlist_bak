@@ -79,7 +79,7 @@ public class ContactService implements Serializable {
         // perform update
         final int deletes = this.entityManager.createQuery(cq).executeUpdate();
 
-        this.log.debug("deleted {}", Long.valueOf(deletes));
+        this.log.debug("deleted count: {}", Long.valueOf(deletes));
 //        }
     }
 }
