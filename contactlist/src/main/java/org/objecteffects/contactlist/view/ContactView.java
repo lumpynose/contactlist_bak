@@ -22,7 +22,6 @@ public class ContactView implements Serializable {
     private static final long serialVersionUID = 4694088548123087426L;
 
     private Contact contact;
-    private Long id;
 
     @Inject
     private ContactService contactService;
@@ -33,33 +32,22 @@ public class ContactView implements Serializable {
 
     @PostConstruct
     public void init() {
+        this.log.warn("starting contactlist-0.0.2");
+
         final FacesContext facesContext = FacesContext.getCurrentInstance();
         final String implementationTitle =
                 facesContext.getClass().getPackage().getImplementationTitle();
-        this.log.warn("starting contactlist-0.0.2");
-        this.log.warn(implementationTitle);
-    }
-
-    public Long getId() {
-        this.log.debug("get id, {}", this.id);
-
-        return this.id;
-    }
-
-    public void setId(final Long _id) {
-        this.log.debug("set id, {}", _id);
-
-        this.id = _id;
+        this.log.warn("implementation title: {}", implementationTitle);
     }
 
     public Contact getContact() {
-        this.log.debug("get contact {}", this.id);
+        this.log.debug("get contact {}", this.contact);
 
         return this.contact;
     }
 
     public List<Contact> getContacts() {
-        this.log.debug("get contacts", this.id);
+        this.log.debug("get contacts");
 
         return this.contactService.getContacts();
     }
@@ -80,7 +68,6 @@ public class ContactView implements Serializable {
     public void viewContact(final Long _id) throws IOException {
         this.log.debug("view contact, {}", _id);
 
-        this.id = _id;
         this.contact = this.contactService.getContact(_id);
 
         this.externalContext.redirect("contact.xhtml");
