@@ -2,7 +2,6 @@ package org.objecteffects.contactlist.view;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.List;
 
 import org.objecteffects.contactlist.model.Contact;
 import org.objecteffects.contactlist.service.ContactService;
@@ -46,16 +45,10 @@ public class ContactView implements Serializable {
         return this.contact;
     }
 
-    public List<Contact> getContacts() {
-        this.log.debug("get contacts");
-
-        return this.contactService.getContacts();
-    }
-
     public void deleteContact(final Long id) throws IOException {
         this.log.debug("delete contact, {}", id);
 
-        addMessage(deleteMessage(id));
+        addMessage(id);
 
         this.contactService.deleteContact(id);
 
@@ -73,7 +66,7 @@ public class ContactView implements Serializable {
         this.externalContext.redirect("contact.xhtml");
     }
 
-    public String deleteMessage(final Long _id) {
+    private void addMessage(final Long _id) {
         final Contact contact = this.contactService.getContact(_id);
         final String firstName = contact.getFirstName();
         final String lastName = contact.getLastName();
@@ -83,10 +76,8 @@ public class ContactView implements Serializable {
         sb.append(" ");
         sb.append(lastName);
 
-        return sb.toString();
-    }
+        final String message = sb.toString();
 
-    private void addMessage(final String message) {
         final FacesMessage facesMsg =
                 new FacesMessage(FacesMessage.SEVERITY_INFO, message, message);
         FacesContext.getCurrentInstance().addMessage(null, facesMsg);
