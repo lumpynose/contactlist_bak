@@ -53,21 +53,15 @@ public class ContactView implements Serializable {
     }
 
     public String deleteContact(final Long _id) {
-        // getId();
-
-        // this.log.debug("delete contact, {}", this.id);
         this.log.debug("deleteContact: id: {}", _id);
 
         FacesContext.getCurrentInstance().getExternalContext().getFlash()
                 .setKeepMessages(true);
 
-        // addMessage(this.id);
         ContactUtil.addMessage(this.contactService.getContact(_id), "deleted");
 
-        // this.contactService.deleteContact(this.id);
         this.contactService.deleteContact(_id);
 
-        // this.externalContext.redirect("contactlist.xhtml");
         return "contactlist?faces-redirect=true";
     }
 
@@ -79,13 +73,4 @@ public class ContactView implements Serializable {
             this.id = Long.valueOf(this.paramId);
         }
     }
-
-//  public String viewContact(final Long _id) throws IOException {
-//      this.log.debug("view contact: {}", _id);
-//
-//      this.contact = this.contactService.getContact(_id);
-//
-//      // this.externalContext.redirect("contactview.xhtml");
-//      return "contactview?faces-redirect=true";
-//  }
 }
