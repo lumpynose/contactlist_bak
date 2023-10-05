@@ -7,15 +7,14 @@ import org.objecteffects.contactlist.service.ContactService;
 import org.slf4j.Logger;
 
 import jakarta.annotation.PostConstruct;
-import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.annotation.ManagedProperty;
-import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
 @Named
-@SessionScoped
+@ViewScoped
 public class ContactView implements Serializable {
     private static final long serialVersionUID = 4694088548123087426L;
 
@@ -63,7 +62,7 @@ public class ContactView implements Serializable {
                 .setKeepMessages(true);
 
         // addMessage(this.id);
-        addMessage(_id);
+        ContactUtil.addMessage(this.contactService.getContact(_id), "deleted");
 
         // this.contactService.deleteContact(this.id);
         this.contactService.deleteContact(_id);
@@ -79,25 +78,6 @@ public class ContactView implements Serializable {
             this.log.debug("getId: paramId: {}", this.paramId);
             this.id = Long.valueOf(this.paramId);
         }
-    }
-
-    private void addMessage(final Long _id) {
-        this.log.debug("addMessage: adding message: {}", _id);
-
-        final Contact contact = this.contactService.getContact(_id);
-        final String firstName = contact.getFirstName();
-        final String lastName = contact.getLastName();
-
-        final StringBuilder sb = new StringBuilder("Deleted ");
-        sb.append(firstName);
-        sb.append(" ");
-        sb.append(lastName);
-
-        final String message = sb.toString();
-
-        final FacesMessage facesMsg =
-                new FacesMessage(FacesMessage.SEVERITY_INFO, message, message);
-        FacesContext.getCurrentInstance().addMessage(null, facesMsg);
     }
 
 //  public String viewContact(final Long _id) throws IOException {

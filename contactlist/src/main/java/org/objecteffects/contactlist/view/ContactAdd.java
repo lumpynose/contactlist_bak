@@ -44,6 +44,8 @@ public class ContactAdd implements Serializable {
 
         this.contactService.addContact(this.contact);
 
+        ContactUtil.addMessage(this.contact, "added");
+
         return "contactlist?faces-redirect=true";
     }
 }

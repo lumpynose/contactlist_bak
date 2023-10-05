@@ -7,14 +7,12 @@ import org.objecteffects.contactlist.model.Contact;
 import org.slf4j.Logger;
 
 import jakarta.annotation.PostConstruct;
-import jakarta.ejb.Singleton;
-import jakarta.ejb.Startup;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
-@Startup
-@Singleton
+// @Startup
+// @Singleton
 public class ContactsInitializer {
     @PersistenceContext
     private EntityManager entityManager;

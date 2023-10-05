@@ -9,49 +9,54 @@
 </h:head>
 <h:body>
     <h1>Contacts</h1>
-    <h:dataTable var="contact" value="${contactList.contacts}"
+    <h:dataTable var="contact" value="#{contactList.contacts}"
         styleClass="contactlist" columnClasses="contactlist-column"
         footerClass="contactlist-footer"
         headerClass="contactlist-header"
         rowClasses="contactlist-row-even, contactlist-row-odd">
         <f:facet name="header">
             List of Contacts
+        </f:facet>
+        <h:column>
+            <f:facet name="header">
+                Id
             </f:facet>
+            #{contact.id}
+        </h:column>
         <h:column>
             <f:facet name="header">
                 Email
-                </f:facet>
-                ${contact.email}
-            </h:column>
+            </f:facet>
+            #{contact.email}
+        </h:column>
         <h:column>
             <f:facet name="header">
                 First name
-                </f:facet>
-                ${contact.firstName}
-            </h:column>
+            </f:facet>
+            #{contact.firstName}
+        </h:column>
         <h:column>
             <f:facet name="header">
                 Last Name
-                </f:facet>
-                ${contact.lastName}
-            </h:column>
+            </f:facet>
+             #{contact.lastName}
+        </h:column>
         <h:column>
             <f:facet name="header">
                 View
             </f:facet>
             <!--
                 id param gets passed on to the ContactView class because
-                that class is @SessionScoped
+                that class is @ViewScoped
             -->
-            <h:link outcome="contactview.xhtml"
-                value="View/Modify/Delete">
+            <h:link outcome="contactview.xhtml" value="View/Modify/Delete">
                 <f:param name="id" value="#{contact.id}" />
             </h:link>
         </h:column>
-        <f:facet name="footer">
-            <h:messages />
-        </f:facet>
     </h:dataTable>
+        <p>
+            <h:messages />
+        </p>
     <hr />
     <h:form>
         <p>
