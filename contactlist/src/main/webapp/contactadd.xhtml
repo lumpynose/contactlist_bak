@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
+    xmlns:h="jakarta.faces.html">
+<h:head>
+    <h:outputStylesheet name="css/stylesheet.css" />
+    <title>Add contact</title>
+</h:head>
+<h:body>
+    <h:form>
+        <h:panelGrid columns="2" headerClass="table-header">
+            <f:facet name="header">
+                <h:outputText value="New contact information" />
+            </f:facet>
+            <h:outputLabel for="email" value="Email address:" />
+            <h:inputText id="email" title="Email address"
+                value="#{contactAdd.contact.email}" required="true"
+                requiredMessage="Error: An email address is required." />
+            <h:outputLabel for="firstName" value="First name:" />
+            <h:inputText id="firstName" title="First name"
+                value="#{contactAdd.contact.firstName}" required="true"
+                requiredMessage="Error: A first name is required." />
+            <h:outputLabel for="lastName" value="Last name:" />
+            <h:inputText id="lastName" title="Last name" required="true"
+                value="#{contactAdd.contact.lastName}"
+                requiredMessage="Error: A last name is required." />
+            <h:outputLabel for="phoneNumber" value="Phone number:" />
+            <h:inputText id="phoneNumber" title="Phone number"
+                value="#{contactAdd.contact.phoneNumber}" />
+            <h:outputLabel for="birthDate" value="Birthday:" />
+            <h:inputText id="birthDate" title="Birthday"
+                value="#{contactAdd.contact.birthDate}">
+                <f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
+            </h:inputText>
+            <h:commandButton id="submit" value="Add contact"
+                action="#{contactAdd.addContact}">
+            </h:commandButton>
+            <h:commandButton id="reset" value="Cancel" type="reset">
+            </h:commandButton>
+        </h:panelGrid>
+    </h:form>
+</h:body>
+</html>

@@ -24,7 +24,7 @@ public class ContactList implements Serializable {
 
     @PostConstruct
     public void init() {
-        this.log.warn("starting contactlist-0.0.2");
+        this.log.warn("init");
     }
 
     public List<Contact> getContacts() {

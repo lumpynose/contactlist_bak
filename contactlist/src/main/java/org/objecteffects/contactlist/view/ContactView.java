@@ -1,6 +1,5 @@
 package org.objecteffects.contactlist.view;
 
-import java.io.IOException;
 import java.io.Serializable;
 
 import org.objecteffects.contactlist.model.Contact;
@@ -9,8 +8,8 @@ import org.slf4j.Logger;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.annotation.ManagedProperty;
 import jakarta.faces.application.FacesMessage;
-import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -21,52 +20,70 @@ public class ContactView implements Serializable {
     private static final long serialVersionUID = 4694088548123087426L;
 
     private Contact contact;
+    private Long id;
 
-    @Inject
-    private ContactService contactService;
-    @Inject
-    private ExternalContext externalContext;
     @Inject
     private transient Logger log;
 
+    @Inject
+    @ManagedProperty(value = "#{param.id}")
+    private String paramId;
+
+    @Inject
+    private ContactService contactService;
+
     @PostConstruct
     public void init() {
-        this.log.warn("starting contactlist-0.0.2");
+        this.log.debug("init: paramId: {}", this.paramId);
 
         final FacesContext facesContext = FacesContext.getCurrentInstance();
         final String implementationTitle =
                 facesContext.getClass().getPackage().getImplementationTitle();
-        this.log.warn("implementation title: {}", implementationTitle);
+        this.log.debug("ContactView: implementation title: {}",
+                implementationTitle);
     }
 
     public Contact getContact() {
-        this.log.debug("get contact {}", this.contact);
+        getId();
+
+        this.log.debug("getContact: id: {}", this.id);
+
+        this.contact = this.contactService.getContact(this.id);
 
         return this.contact;
     }
 
-    public void deleteContact(final Long id) throws IOException {
-        this.log.debug("delete contact, {}", id);
+    public String deleteContact(final Long _id) {
+        // getId();
 
-        addMessage(id);
-
-        this.contactService.deleteContact(id);
+        // this.log.debug("delete contact, {}", this.id);
+        this.log.debug("deleteContact: id: {}", _id);
 
         FacesContext.getCurrentInstance().getExternalContext().getFlash()
                 .setKeepMessages(true);
 
-        this.externalContext.redirect("contactlist.xhtml");
+        // addMessage(this.id);
+        addMessage(_id);
+
+        // this.contactService.deleteContact(this.id);
+        this.contactService.deleteContact(_id);
+
+        // this.externalContext.redirect("contactlist.xhtml");
+        return "contactlist?faces-redirect=true";
     }
 
-    public void viewContact(final Long _id) throws IOException {
-        this.log.debug("view contact, {}", _id);
+    private void getId() {
+        this.log.debug("getId: id: {}", this.id);
 
-        this.contact = this.contactService.getContact(_id);
-
-        this.externalContext.redirect("contact.xhtml");
+        if (this.paramId != null) {
+            this.log.debug("getId: paramId: {}", this.paramId);
+            this.id = Long.valueOf(this.paramId);
+        }
     }
 
     private void addMessage(final Long _id) {
+        this.log.debug("addMessage: adding message: {}", _id);
+
         final Contact contact = this.contactService.getContact(_id);
         final String firstName = contact.getFirstName();
         final String lastName = contact.getLastName();
@@ -82,4 +99,13 @@ public class ContactView implements Serializable {
                 new FacesMessage(FacesMessage.SEVERITY_INFO, message, message);
         FacesContext.getCurrentInstance().addMessage(null, facesMsg);
     }
+
+//  public String viewContact(final Long _id) throws IOException {
+//      this.log.debug("view contact: {}", _id);
+//
+//      this.contact = this.contactService.getContact(_id);
+//
+//      // this.externalContext.redirect("contactview.xhtml");
+//      return "contactview?faces-redirect=true";
+//  }
 }

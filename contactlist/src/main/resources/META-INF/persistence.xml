@@ -15,9 +15,11 @@
             <property name="hibernate.format_sql" value="true" />
             <property name="hibernate.dialect"
                 value="org.hibernate.dialect.PostgreSQLDialect" />
+            <!--
             <property
                 name="javax.persistence.sql-load-script-source"
                 value="META-INF/sql/contacts.sql" />
+            -->
         </properties>
     </persistence-unit>
 </persistence>

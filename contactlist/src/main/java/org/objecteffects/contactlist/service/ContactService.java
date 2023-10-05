@@ -28,13 +28,6 @@ public class ContactService implements Serializable {
         this.entityManager.persist(contact);
     }
 
-//    public List<Contact> getContacts() {
-//        this.log.debug("get contacts");
-//
-//        return this.entityManager.createQuery("select c from Contact c",
-//                Contact.class).getResultList();
-//    }
-
     public List<Contact> getContacts() {
         final CriteriaQuery<Contact> cq =
                 this.entityManager.getCriteriaBuilder()
@@ -46,7 +39,7 @@ public class ContactService implements Serializable {
     }
 
     public Contact getContact(final Long id) {
-        this.log.debug("get contact, {}", id);
+        this.log.debug("get contact: {}", id);
 
         final CriteriaBuilder cb = this.entityManager.getCriteriaBuilder();
 
@@ -62,7 +55,7 @@ public class ContactService implements Serializable {
     }
 
     public void deleteContact(final Long id) {
-        this.log.debug("delete contact, {}", id);
+        this.log.debug("delete contact: {}", id);
 
         final CriteriaBuilder cb = this.entityManager.getCriteriaBuilder();
 
@@ -80,6 +73,12 @@ public class ContactService implements Serializable {
         final int deletes = this.entityManager.createQuery(cq).executeUpdate();
 
         this.log.debug("deleted count: {}", Long.valueOf(deletes));
-//        }
+    }
+
+    public List<Contact> getContactsOld() {
+        this.log.debug("get contacts");
+
+        return this.entityManager.createQuery("select c from Contact c",
+                Contact.class).getResultList();
     }
 }

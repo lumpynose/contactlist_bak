@@ -1,7 +1,8 @@
-.list-row-even {
-    background-color: hsl(0, 0%, 90%);
-}
-table, th, td {
+table.contactlist {
   border: 2px solid black;
   border-collapse: collapse;
+}
+
+tr.contactlist-row-even {
+    background-color: hsl(0, 0%, 90%);
 }

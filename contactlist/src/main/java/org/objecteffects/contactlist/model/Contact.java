@@ -19,12 +19,13 @@ public class Contact implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(nullable = false)
     private @NotNull String firstName;
     @Column(nullable = false)
     private @NotNull String lastName;
-    @Column
-    private String email;
+    @Column(nullable = false)
+    private @NotNull String email;
     @Column
     private String phoneNumber;
     @Column
@@ -91,7 +92,7 @@ public class Contact implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("%s %s, %s, %s, %s", this.firstName, this.lastName,
-                this.email, this.phoneNumber, this.birthDate);
+        return String.format("%d: %s %s, %s, %s, %s", this.id, this.firstName,
+                this.lastName, this.email, this.phoneNumber, this.birthDate);
     }
 }

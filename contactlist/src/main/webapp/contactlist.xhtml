@@ -2,56 +2,63 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
-    xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets">
+    xmlns:h="jakarta.faces.html">
 <h:head>
     <h:outputStylesheet name="css/stylesheet.css" />
-    <title>Contact list 2</title>
+    <title>Contacts</title>
 </h:head>
 <h:body>
-    <h1>Contact list 2</h1>
-    <h:form>
-        <h:dataTable var="contact" value="${contactList.contacts}"
-            captionClass="list-caption"
-            columnClasses="list-column-center, list-column-left,
-            list-column-right, list-column-center"
-            footerClass="list-footer" headerClass="list-header"
-            rowClasses="list-row-even, list-row-odd"
-            styleClass="list-background">
-            <f:facet name="header">
+    <h1>Contacts</h1>
+    <h:dataTable var="contact" value="${contactList.contacts}"
+        styleClass="contactlist" columnClasses="contactlist-column"
+        footerClass="contactlist-footer"
+        headerClass="contactlist-header"
+        rowClasses="contactlist-row-even, contactlist-row-odd">
+        <f:facet name="header">
             List of Contacts
             </f:facet>
-            <h:column>
-                <f:facet name="header">
+        <h:column>
+            <f:facet name="header">
                 Email
                 </f:facet>
                 ${contact.email}
             </h:column>
-            <h:column>
-                <f:facet name="header">
+        <h:column>
+            <f:facet name="header">
                 First name
                 </f:facet>
                 ${contact.firstName}
             </h:column>
-            <h:column>
-                <f:facet name="header">
+        <h:column>
+            <f:facet name="header">
                 Last Name
                 </f:facet>
                 ${contact.lastName}
             </h:column>
-            <h:column>
-                <f:facet name="header">
+        <h:column>
+            <f:facet name="header">
                 View
-                </f:facet>
-                <h:commandLink
-                    action="#{contactView.viewContact(contact.id)}"
-                    value="View">
-                </h:commandLink>
-            </h:column>
-        </h:dataTable>
-    </h:form>
+            </f:facet>
+            <!--
+                id param gets passed on to the ContactView class because
+                that class is @SessionScoped
+            -->
+            <h:link outcome="contactview.xhtml"
+                value="View/Modify/Delete">
+                <f:param name="id" value="#{contact.id}" />
+            </h:link>
+        </h:column>
+        <f:facet name="footer">
+            <h:messages />
+        </f:facet>
+    </h:dataTable>
     <hr />
-    <p class="messages">
-        <h:messages />
-    </p>
+    <h:form>
+        <p>
+            <h:commandButton value="Add contact"
+                includeViewParams="true" action="contactadd.xhtml">
+            </h:commandButton>
+        </p>
+    </h:form>
 </h:body>
 </html>
