@@ -25,7 +25,9 @@ public class ContactService implements Serializable {
     private transient Logger log;
 
     public void addContact(final Contact contact) {
-        this.entityManager.persist(contact);
+        this.log.debug("adding/merging: {}", contact);
+
+        this.entityManager.merge(contact);
     }
 
     public List<Contact> getContacts() {
@@ -39,7 +41,7 @@ public class ContactService implements Serializable {
     }
 
     public Contact getContact(final Long id) {
-        this.log.debug("get contact: {}", id);
+        this.log.debug("getContact: id: {}", id);
 
         final CriteriaBuilder cb = this.entityManager.getCriteriaBuilder();
 
@@ -55,7 +57,7 @@ public class ContactService implements Serializable {
     }
 
     public void deleteContact(final Long id) {
-        this.log.debug("delete contact: {}", id);
+        this.log.debug("deleteContact: id: {}", id);
 
         final CriteriaBuilder cb = this.entityManager.getCriteriaBuilder();
 
@@ -73,12 +75,5 @@ public class ContactService implements Serializable {
         final int deletes = this.entityManager.createQuery(cq).executeUpdate();
 
         this.log.debug("deleted count: {}", Long.valueOf(deletes));
-    }
-
-    public List<Contact> getContactsOld() {
-        this.log.debug("get contacts");
-
-        return this.entityManager.createQuery("select c from Contact c",
-                Contact.class).getResultList();
     }
 }

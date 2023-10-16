@@ -10,7 +10,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Contact implements Serializable {
@@ -20,14 +23,27 @@ public class Contact implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Size(min = 1)
+    @NotNull
     @Column(nullable = false)
     private @NotNull String firstName;
+
+    @Size(min = 1)
+    @NotNull
     @Column(nullable = false)
     private @NotNull String lastName;
+
+    @Size(min = 5)
+    @NotNull
+    @Email
     @Column(nullable = false)
     private @NotNull String email;
+
+    @Pattern(regexp = "((\\(\\d{3}\\))|\\d{3})[ -.]?\\d{3}[-.]?\\d{4}")
+    @NotNull
     @Column
     private String phoneNumber;
+
     @Column
     @Temporal(TemporalType.DATE)
     private Date birthDate;

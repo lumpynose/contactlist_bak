@@ -9,7 +9,7 @@
 </h:head>
 <h:body>
     <h1>Contacts</h1>
-    <h:dataTable var="contact" value="#{contactList.contacts}"
+    <h:dataTable var="contact" value="#{contactListFlash.contacts}"
         styleClass="contactlist" columnClasses="contactlist-column"
         footerClass="contactlist-footer"
         headerClass="contactlist-header"
@@ -43,25 +43,25 @@
         </h:column>
         <h:column>
             <f:facet name="header">
-                View
+                Action
             </f:facet>
-            <!--
-                id param gets passed on to the ContactView class because
-                that class is @ViewScoped
-            -->
-            <h:link outcome="contactview.xhtml" value="View/Modify/Delete">
-                <f:param name="id" value="#{contact.id}" />
-            </h:link>
+            <!--  immediate="true" ??  -->
+            <h:form>
+                <h:commandLink id="action"
+                    action="#{contactListFlash.addToFlash(contact)}">
+                    <h:outputText value="View/Modify/Delete" />
+                </h:commandLink>
+            </h:form>
         </h:column>
     </h:dataTable>
-        <p>
-            <h:messages />
-        </p>
+    <p>
+        <h:messages />
+    </p>
     <hr />
     <h:form>
         <p>
             <h:commandButton value="Add contact"
-                includeViewParams="true" action="contactadd.xhtml">
+                includeViewParams="true" action="contactadd.xhtml?faces-redirect=true">
             </h:commandButton>
         </p>
     </h:form>

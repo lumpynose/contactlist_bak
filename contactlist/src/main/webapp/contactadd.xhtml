@@ -13,28 +13,35 @@
             <f:facet name="header">
                 <h:outputText value="New contact information" />
             </f:facet>
+            
             <h:outputLabel for="email" value="Email address:" />
             <h:inputText id="email" title="Email address"
                 value="#{contactAdd.contact.email}" required="true"
+                validator="#{contactAdd.validateEmail}"
                 requiredMessage="Error: An email address is required." />
+                
             <h:outputLabel for="firstName" value="First name:" />
             <h:inputText id="firstName" title="First name"
                 value="#{contactAdd.contact.firstName}" required="true"
                 requiredMessage="Error: A first name is required." />
+                
             <h:outputLabel for="lastName" value="Last name:" />
             <h:inputText id="lastName" title="Last name" required="true"
                 value="#{contactAdd.contact.lastName}"
                 requiredMessage="Error: A last name is required." />
+                
             <h:outputLabel for="phoneNumber" value="Phone number:" />
             <h:inputText id="phoneNumber" title="Phone number"
                 value="#{contactAdd.contact.phoneNumber}" />
+                
             <h:outputLabel for="birthDate" value="Birthday:" />
             <h:inputText id="birthDate" title="Birthday"
                 value="#{contactAdd.contact.birthDate}">
                 <f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
             </h:inputText>
+            
             <h:commandButton id="submit" value="Add contact"
-                action="#{contactAdd.addContact}">
+                action="#{contactAdd.addContact()}">
             </h:commandButton>
             <h:commandButton id="reset" value="Cancel" type="reset">
             </h:commandButton>

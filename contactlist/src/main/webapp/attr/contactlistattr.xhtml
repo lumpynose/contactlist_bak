@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
+    xmlns:h="jakarta.faces.html">
+<h:head>
+    <h:outputStylesheet name="css/stylesheet.css" />
+    <title>Contacts</title>
+</h:head>
+<h:body>
+    <h1>Contacts</h1>
+    <h:dataTable var="contact" value="#{contactListParam.contacts}"
+        styleClass="contactlist" columnClasses="contactlist-column"
+        footerClass="contactlist-footer"
+        headerClass="contactlist-header"
+        rowClasses="contactlist-row-even, contactlist-row-odd">
+        <f:facet name="header">
+            List of Contacts
+        </f:facet>
+        <h:column>
+            <f:facet name="header">
+                Id
+            </f:facet>
+            #{contact.id}
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                Email
+            </f:facet>
+            #{contact.email}
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                First name
+            </f:facet>
+            #{contact.firstName}
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                Last Name
+            </f:facet>
+             #{contact.lastName}
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                View
+            </f:facet>
+            <!--
+                id param gets passed on to the ContactView class because
+                that class is @ViewScoped
+            -->
+            <h:link outcome="contactviewparam.xhtml?faces-redirect=true"
+                value="View/Modify/Delete">
+                <f:param name="id" value="#{contact.id}" />
+            </h:link>
+        </h:column>
+    </h:dataTable>
+    <p>
+        <h:messages />
+    </p>
+    <hr />
+    <h:form>
+        <p>
+            <h:commandButton value="Add contact"
+                includeViewParams="true" action="contactadd.xhtml">
+            </h:commandButton>
+        </p>
+    </h:form>
+</h:body>
+</html>

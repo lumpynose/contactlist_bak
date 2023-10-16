@@ -2,7 +2,8 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="jakarta.faces.core"
-    xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets">
+    xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets"
+    xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
     <title>Contact</title>
 </h:head>
@@ -12,23 +13,23 @@
             <h:outputText value="Contact information" />
         </f:facet>
         <h:outputLabel for="id" value="Id" />
-        <h:outputText value="#{contactView.contact.id}" />
+        <h:outputText value="#{contactViewFlash.contact.id}" />
         <h:outputLabel for="email" value="Email" />
-        <h:outputText value="#{contactView.contact.email}" />
+        <h:outputText value="#{contactViewFlash.contact.email}" />
         <h:outputLabel for="firstname" value="First name" />
-        <h:outputText value="#{contactView.contact.firstName}" />
+        <h:outputText value="#{contactViewFlash.contact.firstName}" />
         <h:outputLabel for="lastname" value="Last name" />
-        <h:outputText value="#{contactView.contact.lastName}" />
+        <h:outputText value="#{contactViewFlash.contact.lastName}" />
         <h:outputLabel for="phonenumber" value="Phone number" />
-        <h:outputText value="#{contactView.contact.phoneNumber}" />
+        <h:outputText value="#{contactViewFlash.contact.phoneNumber}" />
         <h:outputLabel for="birthdate" value="Birthday" />
-        <h:outputText value="#{contactView.contact.birthDate}" />
+        <h:outputText value="#{contactViewFlash.contact.birthDate}" />
     </h:panelGrid>
 
     <h:form>
         <p>
             <h:commandButton value="Delete"
-                action="#{contactView.deleteContact(contactView.contact.id)}">
+                action="#{contactViewFlash.deleteContact(contactViewFlash.contact)}">
             </h:commandButton>
         </p>
     </h:form>
@@ -38,10 +39,11 @@
     </p>
 
     <p>
-        <h:link value="Back to contact list" outcome="contactlist.xhtml" />
+        <h:link value="Back to contact list"
+            outcome="contactlistflash.xhtml?faces-redirect=true" />
     </p>
 </h:body>
 <ui:remove>
-                <f:param name="id" value="#{contactView.contact.id}" />
+    <f:param name="id" value="#{contactViewFlash.contact.id}" />
 </ui:remove>
 </html>

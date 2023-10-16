@@ -1,9 +1,10 @@
-package org.objecteffects.contactlist.view;
+package org.objecteffects.contactlist.view.attr;
 
 import java.io.Serializable;
 
 import org.objecteffects.contactlist.model.Contact;
 import org.objecteffects.contactlist.service.ContactService;
+import org.objecteffects.contactlist.view.ContactUtil;
 import org.slf4j.Logger;
 
 import jakarta.annotation.PostConstruct;
@@ -15,7 +16,7 @@ import jakarta.inject.Named;
 
 @Named
 @ViewScoped
-public class ContactView implements Serializable {
+public class ContactViewAttr implements Serializable {
     private static final long serialVersionUID = 4694088548123087426L;
 
     private Contact contact;
@@ -30,6 +31,8 @@ public class ContactView implements Serializable {
 
     @Inject
     private ContactService contactService;
+    @Inject
+    private ContactUtil contactUtil;
 
     @PostConstruct
     public void init() {
@@ -38,7 +41,7 @@ public class ContactView implements Serializable {
         final FacesContext facesContext = FacesContext.getCurrentInstance();
         final String implementationTitle =
                 facesContext.getClass().getPackage().getImplementationTitle();
-        this.log.debug("ContactView: implementation title: {}",
+        this.log.debug("ContactViewFlash: implementation title: {}",
                 implementationTitle);
     }
 
@@ -52,17 +55,20 @@ public class ContactView implements Serializable {
         return this.contact;
     }
 
-    public String deleteContact(final Long _id) {
+    public String deleteContact(Long _id) {
+        _id = this.id;
+
         this.log.debug("deleteContact: id: {}", _id);
 
         FacesContext.getCurrentInstance().getExternalContext().getFlash()
                 .setKeepMessages(true);
 
-        ContactUtil.addMessage(this.contactService.getContact(_id), "deleted");
+        this.contactUtil.addMessage(this.contactService.getContact(_id),
+                "deleted");
 
         this.contactService.deleteContact(_id);
 
-        return "contactlist?faces-redirect=true";
+        return "contactlistparam.xhtml?faces-redirect=true";
     }
 
     private void getId() {

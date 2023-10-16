@@ -1,4 +1,4 @@
-package org.objecteffects.contactlist.view;
+package org.objecteffects.contactlist.view.attr;
 
 import java.io.Serializable;
 import java.util.List;
@@ -14,7 +14,7 @@ import jakarta.inject.Named;
 
 @Named
 @RequestScoped
-public class ContactList implements Serializable {
+public class ContactListAttr implements Serializable {
     private static final long serialVersionUID = -570500230181100578L;
 
     @Inject
