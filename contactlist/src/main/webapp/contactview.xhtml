@@ -29,27 +29,27 @@
 
             <h:outputLabel for="id" value="Id" />
             <h:outputText id="id" name="id"
-                value="#{ContactView.contact.id}" />
+                value="#{contactView.contact.id}" />
 
             <h:outputLabel for="email" value="Email" />
             <h:outputText id="email" name="email"
-                value="#{ContactView.contact.email}" />
+                value="#{contactView.contact.email}" />
 
             <h:outputLabel for="firstname" value="First name" />
             <h:outputText id="firstname" name="firstname"
-                value="#{ContactView.contact.firstName}" />
+                value="#{contactView.contact.firstName}" />
 
             <h:outputLabel for="lastname" value="Last name" />
             <h:outputText id="lastname" name="lastname"
-                value="#{ContactView.contact.lastName}" />
+                value="#{contactView.contact.lastName}" />
 
             <h:outputLabel for="phonenumber" value="Phone number" />
             <h:outputText id="phonenumber" name="phonenumber"
-                value="#{ContactView.contact.phoneNumber}" />
+                value="#{contactView.contact.phoneNumber}" />
 
             <h:outputLabel for="birthdate" value="Birthday" />
             <h:outputText id="birthdate" name="birthdate"
-                value="#{ContactView.contact.birthDate}" />
+                value="#{contactView.contact.birthDate}" />
         </h:panelGrid>
 
         <hr />
@@ -57,7 +57,7 @@
         <h:form>
             <p>
                 <p:commandButton value="Delete"
-                    action="#{contactview.deleteContact()}">
+                    action="#{contactView.deleteContact()}">
                     <f:param name="paramId" value="#{param.paramId}" />
                 </p:commandButton>
             </p>
@@ -69,7 +69,7 @@
 
         <p>
             <h:link value="Back to contact list"
-                outcome="/param/contactlist.xhtml?faces-redirect=true" />
+                outcome="/contactlist.xhtml?faces-redirect=true" />
         </p>
         </main>
         <nav>Navigation goes here.</nav>

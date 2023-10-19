@@ -50,7 +50,7 @@ public class ContactAdd implements Serializable {
 
         this.contactUtil.addMessage(this.contact, "added");
 
-        return "/param/contactlist.xhtml?faces-redirect=true";
+        return "/contactlist.xhtml?faces-redirect=true";
     }
 
     public void validateEmail(final FacesContext ctx, final UIComponent cmp,

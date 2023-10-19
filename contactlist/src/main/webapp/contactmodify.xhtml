@@ -27,7 +27,7 @@
         <header>
             <h2>Stripesbook Contacts (${param.paramId})</h2>
         </header>
-        <c:set var="contact" value="#{ContactModify.contact}"></c:set>
+        <c:set var="contact" value="#{contactModify.contact}"></c:set>
         <main>
             <h:form id="contactModify">
                 <h:panelGrid columns="3" headerClass="table-header"
@@ -38,7 +38,7 @@
 
                     <h:outputLabel for="id" value="Id" />
                     <h:outputText
-                        value="#{ContactModify.contact.id}" />
+                        value="#{contactModify.contact.id}" />
                     <h:message for="id" />
 
                     <h:outputLabel for="email" value="Email address" />
@@ -92,7 +92,7 @@
 
                 <p>
                     <h:commandButton value="Update"
-                        action="#{contactmodify.modifyContact()}">
+                        action="#{contactModify.modifyContact()}">
 <!--
                         <f:param name="paramId" value="#{param.paramId}" />
 -->
@@ -100,7 +100,7 @@
                     <span>&#160;</span>
                     <h:commandButton id="reset" value="Reset"
                         type="reset"
-                        action="/param/contactlist.xhtml?faces-redirect=true" />
+                        action="/contactlist.xhtml?faces-redirect=true" />
                 </p>
             </h:form>
 
@@ -110,7 +110,7 @@
 
             <p>
                 <h:link value="Back to contact list"
-                    outcome="/param/contactlist.xhtml?faces-redirect=true" />
+                    outcome="/contactlist.xhtml?faces-redirect=true" />
             </p>
         </main>
         <nav>Navigation goes here.</nav>

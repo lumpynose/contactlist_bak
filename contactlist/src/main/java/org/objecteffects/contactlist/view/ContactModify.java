@@ -57,7 +57,7 @@ public class ContactModify implements Serializable {
         this.contact =
                 this.contactService.getContact(id);
 
-        return "/param/contactmodify.xhtml?faces-redirect=true";
+        return "/contactmodify.xhtml?faces-redirect=true";
     }
 
     public String modifyContact() {
@@ -72,6 +72,6 @@ public class ContactModify implements Serializable {
             this.conversation.end();
         }
 
-        return "/param/contactlist.xhtml?faces-redirect=true";
+        return "/contactlist.xhtml?faces-redirect=true";
     }
 }

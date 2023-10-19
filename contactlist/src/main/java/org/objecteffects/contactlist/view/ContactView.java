@@ -51,7 +51,7 @@ public class ContactView implements Serializable {
 
         this.contactUtil.addMessage(contact, "deleted");
 
-        return "/param/contactlist.xhtml?faces-redirect=true";
+        return "/contactlist.xhtml?faces-redirect=true";
     }
 
     public String deleteContact(final Long id) {
@@ -65,7 +65,7 @@ public class ContactView implements Serializable {
 
         this.contactUtil.addMessage(contact, "deleted");
 
-        return "/param/contactlist.xhtml?faces-redirect=true";
+        return "/contactlist.xhtml?faces-redirect=true";
     }
 
     public String deleteContact(final Contact contact) {
@@ -77,6 +77,6 @@ public class ContactView implements Serializable {
 
         this.contactUtil.addMessage(contactCopy, "deleted");
 
-        return "/param/contactlist.xhtml?faces-redirect=true";
+        return "/contactlist.xhtml?faces-redirect=true";
     }
 }
