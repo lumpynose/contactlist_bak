@@ -1,73 +1,105 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+
 <!DOCTYPE html>
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
     xmlns:ui="jakarta.faces.facelets" xmlns:f="jakarta.faces.core"
-    xmlns:h="jakarta.faces.html" template="/param/template.xhtml">
-    <ui:define name="content">
-        <h2>Contacts</h2>
-        <h:dataTable var="contact" value="#{contactListParam.contacts}"
-            styleClass="contactlist" columnClasses="contactlist-column"
-            footerClass="contactlist-footer"
-            headerClass="contactlist-header"
-            rowClasses="contactlist-row-even, contactlist-row-odd">
-            <f:facet name="header">
+    xmlns:h="jakarta.faces.html" xmlns:o="http://omnifaces.org/ui"
+    xmlns:of="http://omnifaces.org/functions"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <h:outputStylesheet name="css/stylesheet.css" />
+    <title>Stripesbook Contacts</title>
+</h:head>
+
+<h:body>
+    <div>
+        <header>
+            <h2>Stripesbook Contacts</h2>
+        </header>
+
+        <main>
+            <h2>Contacts</h2>
+<h:form>
+            <h:dataTable var="contact"
+                value="#{contactListParam.contacts}"
+                styleClass="contactlist"
+                columnClasses="contactlist-column"
+                footerClass="contactlist-footer"
+                headerClass="contactlist-header"
+                rowClasses="contactlist-row-even, contactlist-row-odd">
+                <f:facet name="header">
                 List of Contacts
                 </f:facet>
-            <h:column>
-                <f:facet name="header">
+                <h:column>
+                    <f:facet name="header">
                     Id
                     </f:facet>
                     #{contact.id}
-            </h:column>
-            <h:column>
-                <f:facet name="header">
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
                     Email
                     </f:facet>
                     #{contact.email}
-            </h:column>
-            <h:column>
-                <f:facet name="header">
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
                     First name
                     </f:facet>
                     #{contact.firstName}
-            </h:column>
-            <h:column>
-                <f:facet name="header">
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
                     Last Name
                     </f:facet>
                     #{contact.lastName}
-            </h:column>
-            <h:column>
-                <f:facet name="header">
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
                     View/Delete
                     </f:facet>
-                <h:link value="View/Delete" includeViewParams="true"
-                    outcome="contactviewparam.xhtml">
-                    <f:param name="paramId" value="#{contact.id}" />
-                </h:link>
-            </h:column>
-            <h:column>
-                <f:facet name="header">
+                    <p:link value="View/Delete"
+                        outcome="/param/contactviewparam.xhtml?faces-redirect=true">
+                        <f:param name="paramId" value="#{contact.id}" />
+                    </p:link>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
                     Modify
                     </f:facet>
-                <h:link value="Modify" includeViewParams="true"
-                    outcome="contactmodifyparam.xhtml">
-                    <f:param name="paramId" value="#{contact.id}" />
-                </h:link>
-            </h:column>
-        </h:dataTable>
+                    <p:commandButton value="Modify"
+                        action="#{contactModifyParam.fetchContact(contact.id)}">
+                        <f:param name="paramId" value="#{contact.id}" />
+                    </p:commandButton>
+                    <!--
+                    <h:button value="Modify"
+                        outcome="/param/contactmodifyparam.xhtml?faces-redirect=true">
+                        <f:param name="paramId" value="#{contact.id}" />
+                    </h:button>
+                    -->
+                </h:column>
+            </h:dataTable>
+</h:form>
 
-        <p>
-            <h:messages />
-        </p>
-
-        <hr />
-
-        <h:form>
             <p>
-                <h:link value="Add contact"
-                    outcome="/contactadd.xhtml?faces-redirect=true" />
+                <h:messages />
             </p>
-        </h:form>
-    </ui:define>
-</ui:composition>
+
+            <hr />
+
+            <h:form>
+                <p>
+                    <h:link value="Add contact"
+                        outcome="/contactadd.xhtml?faces-redirect=true" />
+                </p>
+            </h:form>
+        </main>
+        <nav>Navigation goes here.</nav>
+        <footer>Footer goes here.</footer>
+    </div>
+</h:body>
+</html>

@@ -8,14 +8,14 @@ import org.objecteffects.contactlist.view.ContactUtil;
 import org.slf4j.Logger;
 
 import jakarta.annotation.PostConstruct;
-import jakarta.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.Conversation;
+import jakarta.enterprise.context.ConversationScoped;
 import jakarta.faces.annotation.ManagedProperty;
-import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
 @Named
-@RequestScoped
+@ConversationScoped
 public class ContactModifyParam implements Serializable {
     private static final long serialVersionUID = 4694088548123087426L;
 
@@ -24,14 +24,18 @@ public class ContactModifyParam implements Serializable {
 
     @Inject
     private ContactService contactService;
+
     @Inject
     private ContactUtil contactUtil;
 
-    Contact contact;
+    @Inject
+    private Conversation conversation;
 
     @Inject
     @ManagedProperty(value = "#{param.paramId}")
     private String paramId;
+
+    Contact contact;
 
     @PostConstruct
     public void init() {
@@ -41,23 +45,33 @@ public class ContactModifyParam implements Serializable {
     public Contact getContact() {
         this.log.debug("getContact: paramId: {}", this.paramId);
 
-        this.contact =
-                this.contactService.getContact(Long.valueOf(this.paramId));
-
         return this.contact;
+    }
+
+    public String fetchContact(final Long id) {
+        if (this.conversation.isTransient()) {
+            this.conversation.begin();
+        }
+
+        this.log.debug("fetchContact: id: {}", id);
+
+        this.contact =
+                this.contactService.getContact(id);
+
+        return "/param/contactmodifyparam.xhtml?faces-redirect=true";
     }
 
     public String modifyContact() {
         this.log.debug("modifyContact: paramId: {}, contact: {}", this.paramId,
                 this.contact);
 
-        // does a merge()
-        this.contactService.addContact(this.contact);
-
-        FacesContext.getCurrentInstance().getExternalContext().getFlash()
-                .setKeepMessages(true);
+        this.contactService.mergeContact(this.contact);
 
         this.contactUtil.addMessage(this.contact, "modified");
+
+        if (!this.conversation.isTransient()) {
+            this.conversation.end();
+        }
 
         return "/param/contactlistparam.xhtml?faces-redirect=true";
     }

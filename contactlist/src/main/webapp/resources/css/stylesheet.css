@@ -3,6 +3,27 @@ table.contactlist {
   border-collapse: collapse;
 }
 
+th.contactlist-header {
+    border-bottom: 2px solid black;
+    font-weight: bold;
+    font-size: 1.0em;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+}
+
 tr.contactlist-row-even {
     background-color: hsl(0, 20%, 90%);
+}
+
+td {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.contactlist-column {
+    margin: 1em;
+}
+
+.ui-button, .ui-widget, .ui-state-default, .ui-corner-all, .ui-button-text-only {
+    font-size: 0.5em;
 }

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="jakarta.faces.facelets" xmlns:f="jakarta.faces.core"
+    xmlns:h="jakarta.faces.html" xmlns:o="http://omnifaces.org/ui"
+    xmlns:of="http://omnifaces.org/functions"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <h:outputStylesheet name="css/stylesheet.css" />
+    <title>Stripesbook Contacts</title>
+</h:head>
+<!--
+    <f:metadata>
+        <f:viewParam name="paramId"
+            value="#{contactViewParam.contact.id}" />
+    </f:metadata>
+    -->
+
+<h:body>
+    <div>
+        <header>
+            <h2>Stripesbook Contacts (${param.paramId})</h2>
+        </header>
+
+        <main>
+            <p class="messages">
+                <h:messages />
+            </p>
+
+            <p>
+                <h:link value="Back to contact list"
+                    outcome="/param/contactlistparam.xhtml?faces-redirect=true" />
+            </p>
+        </main>
+        <nav>Navigation goes here.</nav>
+        <footer>Footer goes here.</footer>
+    </div>
+</h:body>
+</html>

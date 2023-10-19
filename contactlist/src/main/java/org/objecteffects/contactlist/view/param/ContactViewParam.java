@@ -10,7 +10,6 @@ import org.slf4j.Logger;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.annotation.ManagedProperty;
-import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
@@ -43,17 +42,41 @@ public class ContactViewParam implements Serializable {
     }
 
     public String deleteContact() {
-        this.log.debug("viewContact: paramId: {}", this.paramId);
+        this.log.debug("deleteContact(): paramId: {}", this.paramId);
 
-        final Long _id = Long.valueOf(this.paramId);
+        final Long id = Long.valueOf(this.paramId);
 
-        this.contactService.deleteContact(_id);
+        final Contact contact = new Contact(this.contactService.getContact(id));
 
-        FacesContext.getCurrentInstance().getExternalContext().getFlash()
-                .setKeepMessages(true);
+        this.contactService.deleteContact(id);
 
-        this.contactUtil.addMessage(this.contactService.getContact(_id),
-                "deleted");
+        this.contactUtil.addMessage(contact, "deleted");
+
+        return "/param/contactlistparam.xhtml?faces-redirect=true";
+    }
+
+    public String deleteContact(final Long id) {
+        this.log.debug("deleteContact(id): paramId: {}, id: {}", this.paramId,
+                id);
+
+        final Contact contact =
+                new Contact(this.contactService.getContact(id));
+
+        this.contactService.deleteContact(id);
+
+        this.contactUtil.addMessage(contact, "deleted");
+
+        return "/param/contactlistparam.xhtml?faces-redirect=true";
+    }
+
+    public String deleteContact(final Contact contact) {
+        this.log.debug("deleteContact(contact): contact: {}", contact);
+
+        final Contact contactCopy = new Contact(contact);
+
+        this.contactService.deleteContact(contact);
+
+        this.contactUtil.addMessage(contactCopy, "deleted");
 
         return "/param/contactlistparam.xhtml?faces-redirect=true";
     }

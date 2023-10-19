@@ -1,51 +1,65 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+
 <!DOCTYPE html>
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
     xmlns:ui="jakarta.faces.facelets" xmlns:f="jakarta.faces.core"
-    xmlns:h="jakarta.faces.html" template="/param/template.xhtml">
-            <!-- 
-        <f:metadata>
-            <f:viewParam name="paramId" value="#{contactViewParam.contact.id}" />
-        </f:metadata>
-             -->
-    <ui:define name="content">
-        <h:panelGrid columns="2" headerClass="table-header">
+    xmlns:h="jakarta.faces.html" xmlns:o="http://omnifaces.org/ui"
+    xmlns:of="http://omnifaces.org/functions"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <h:outputStylesheet name="css/stylesheet.css" />
+    <title>Stripesbook Contacts</title>
+</h:head>
+
+<h:body>
+    <div>
+        <header>
+        <h2>Stripesbook Contacts (${param.paramId})</h2>
+        </header>
+
+        <main> <h:panelGrid columns="2"
+            headerClass="table-header">
             <f:facet name="header">
                 <h:outputText value="Contact information" />
             </f:facet>
+
             <h:outputLabel for="id" value="Id" />
-            <h:outputText value="#{contactViewParam.contact.id}" />
-            
+            <h:outputText id="id" name="id"
+                value="#{contactViewParam.contact.id}" />
+
             <h:outputLabel for="email" value="Email" />
-            <h:outputText value="#{contactViewParam.contact.email}" />
-            
+            <h:outputText id="email" name="email"
+                value="#{contactViewParam.contact.email}" />
+
             <h:outputLabel for="firstname" value="First name" />
-            <h:outputText value="#{contactViewParam.contact.firstName}" />
-            
+            <h:outputText id="firstname" name="firstname"
+                value="#{contactViewParam.contact.firstName}" />
+
             <h:outputLabel for="lastname" value="Last name" />
-            <h:outputText value="#{contactViewParam.contact.lastName}" />
-            
+            <h:outputText id="lastname" name="lastname"
+                value="#{contactViewParam.contact.lastName}" />
+
             <h:outputLabel for="phonenumber" value="Phone number" />
-            <h:outputText value="#{contactViewParam.contact.phoneNumber}" />
-            
+            <h:outputText id="phonenumber" name="phonenumber"
+                value="#{contactViewParam.contact.phoneNumber}" />
+
             <h:outputLabel for="birthdate" value="Birthday" />
-            <h:outputText value="#{contactViewParam.contact.birthDate}" />
+            <h:outputText id="birthdate" name="birthdate"
+                value="#{contactViewParam.contact.birthDate}" />
         </h:panelGrid>
-        
+
         <hr />
-        
+
         <h:form>
             <p>
-            <!-- 
-                <h:link value="Delete"  includeViewParams="true"
-                    outcome="#{contactViewParam.deleteContact()}">
-                    <f:param name="paramId" value="#{contactViewParam.contact.id}" />
-                </h:link>
-             -->
-                <h:commandButton value="Delete"
+                <p:commandButton value="Delete"
                     action="#{contactViewParam.deleteContact()}">
-                    <f:param name="paramId" value="#{contactViewParam.contact.id}" />
-                </h:commandButton>
+                    <f:param name="paramId" value="#{param.paramId}" />
+                </p:commandButton>
             </p>
         </h:form>
 
@@ -57,5 +71,15 @@
             <h:link value="Back to contact list"
                 outcome="/param/contactlistparam.xhtml?faces-redirect=true" />
         </p>
-    </ui:define>
-</ui:composition>
+        </main>
+        <nav>Navigation goes here.</nav>
+        <footer>Footer goes here.</footer>
+    </div>
+</h:body>
+<!--
+<f:metadata>
+    <o:viewParam name="paramId" required="true"
+        value="#{contactViewParam.contact.id}" />
+</f:metadata>
+-->
+</html>

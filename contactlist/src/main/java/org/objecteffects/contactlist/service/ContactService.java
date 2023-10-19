@@ -24,7 +24,7 @@ public class ContactService implements Serializable {
     @Inject
     private transient Logger log;
 
-    public void addContact(final Contact contact) {
+    public void mergeContact(final Contact contact) {
         this.log.debug("adding/merging: {}", contact);
 
         this.entityManager.merge(contact);
@@ -75,5 +75,11 @@ public class ContactService implements Serializable {
         final int deletes = this.entityManager.createQuery(cq).executeUpdate();
 
         this.log.debug("deleted count: {}", Long.valueOf(deletes));
+    }
+
+    public void deleteContact(final Contact contact) {
+        this.log.debug("deleteContact: contact: {}", contact);
+
+        deleteContact(contact.getId());
     }
 }

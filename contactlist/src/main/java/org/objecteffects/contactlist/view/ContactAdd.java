@@ -46,10 +46,7 @@ public class ContactAdd implements Serializable {
     public String addContact() {
         this.log.debug("addContact: contact: {}", this.contact);
 
-        this.contactService.addContact(this.contact);
-
-        FacesContext.getCurrentInstance().getExternalContext().getFlash()
-                .setKeepMessages(true);
+        this.contactService.mergeContact(this.contact);
 
         this.contactUtil.addMessage(this.contact, "added");
 

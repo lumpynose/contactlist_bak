@@ -1,69 +1,127 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+
 <!DOCTYPE html>
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
     xmlns:ui="jakarta.faces.facelets" xmlns:f="jakarta.faces.core"
-    xmlns:h="jakarta.faces.html" template="/param/template.xhtml">
-    <!--
+    xmlns:h="jakarta.faces.html" xmlns:o="http://omnifaces.org/ui"
+    xmlns:of="http://omnifaces.org/functions"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:c="jakarta.tags.core">
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <h:outputStylesheet name="css/stylesheet.css" />
+    <title>Stripesbook Contacts</title>
+</h:head>
+
+    <f:metadata>
+        <f:viewParam name="paramId" value="#{param.paramId}" />
+    </f:metadata>
+<!--
+-->
+
+<h:body>
+    <div>
+        <header>
+            <h2>Stripesbook Contacts (${param.paramId})</h2>
+        </header>
+        <c:set var="contact" value="#{contactModifyParam.contact}"></c:set>
+        <main>
+            <h:form id="contactModify">
+                <h:panelGrid columns="3" headerClass="table-header"
+                    role="presentation">
+                    <f:facet name="header">
+                        <h:outputText value="Contact information" />
+                    </f:facet>
+
+                    <h:outputLabel for="id" value="Id" />
+                    <h:outputText
+                        value="#{contactModifyParam.contact.id}" />
+                    <h:message for="id" />
+
+                    <h:outputLabel for="email" value="Email address" />
+                    <p:inplace editor="false">
+                    <h:inputText id="email" name="email"
+                        title="Email address"
+                        value="#{contact.email}"
+                        required="true" />
+                    </p:inplace>
+                    <h:message for="email" />
+
+                    <h:outputLabel for="firstname" value="First name" />
+                    <p:inplace editor="true">
+                    <h:inputText id="firstname" name="firstName"
+                        title="First name"
+                        value="#{contact.firstName}"
+                        required="true" />
+                    </p:inplace>
+                    <h:message for="firstname" />
+
+                    <h:outputLabel for="lastname" value="Last name" />
+                    <p:inplace editor="true">
+                    <h:inputText id="lastname" name="lastName"
+                        title="Last name"
+                        value="#{contact.lastName}"
+                        required="true" />
+                    </p:inplace>
+                    <h:message for="lastname" />
+
+                    <h:outputLabel for="phonenumber"
+                        value="Phone number" />
+                    <p:inplace editor="true">
+                    <h:inputText id="phonenumber" name="phoneNumber"
+                        title="Phone number"
+                        value="#{contact.phoneNumber}"
+                        required="true" />
+                    </p:inplace>
+                    <h:message for="phonenumber" />
+
+                    <h:outputLabel for="birthdate" value="Birthday" />
+                    <p:inplace editor="true">
+                    <h:inputText id="birthdate" name="birthDate"
+                        title="Birthday"
+                        value="#{contact.birthDate}">
+                        <f:convertDateTime type="date"
+                            pattern="yyyy-MM-dd" />
+                    </h:inputText>
+                    </p:inplace>
+                    <h:message for="birthdate" />
+                </h:panelGrid>
+
+                <p>
+                    <h:commandButton value="Update"
+                        action="#{contactModifyParam.modifyContact()}">
+<!--
+                        <f:param name="paramId" value="#{param.paramId}" />
+-->
+                    </h:commandButton>
+                    <span>&#160;</span>
+                    <h:commandButton id="reset" value="Reset"
+                        type="reset"
+                        action="/param/contactlistparam.xhtml?faces-redirect=true" />
+                </p>
+            </h:form>
+
+            <p class="messages">
+                <h:messages />
+            </p>
+
+            <p>
+                <h:link value="Back to contact list"
+                    outcome="/param/contactlistparam.xhtml?faces-redirect=true" />
+            </p>
+        </main>
+        <nav>Navigation goes here.</nav>
+        <footer>Footer goes here.</footer>
+    </div>
+</h:body>
+</html>
+
+<!--
     <f:metadata>
         <f:viewParam name="paramId"
             value="#{contactModifyParam.contact.id}" />
     </f:metadata>
-    -->
-    <ui:define name="content">
-        <h:form>
-            <h:panelGrid columns="2" headerClass="table-header">
-                <f:facet name="header">
-                    <h:outputText value="Contact information" />
-                </f:facet>
-
-                <h:outputLabel for="id" value="Id" />
-                <h:outputText value="#{contactModifyParam.contact.id}" />
-
-                <h:outputLabel for="email" value="Email address" />
-                <h:inputText id="email" title="Email address"
-                    value="#{contactModifyParam.contact.email}"
-                    required="true" />
-
-                <h:outputLabel for="firstname" value="First name" />
-                <h:inputText id="firstName" title="First name"
-                    value="#{contactModifyParam.contact.firstName}"
-                    required="true" />
-
-                <h:outputLabel for="lastname" value="Last name" />
-                <h:inputText id="lastName" title="Last name"
-                    value="#{contactModifyParam.contact.lastName}"
-                    required="true" />
-
-                <h:outputLabel for="phonenumber" value="Phone number" />
-                <h:inputText id="phoneNumber" title="Phone number"
-                    value="#{contactModifyParam.contact.phoneNumber}"
-                    required="true" />
-
-                <h:outputLabel for="birthdate" value="Birthday" />
-                <h:inputText id="birthDate" title="Birthday"
-                    value="#{contactModifyParam.contact.birthDate}">
-                    <f:convertDateTime type="date" pattern="yyyy-MM-dd" />
-                </h:inputText>
-            </h:panelGrid>
-            <p>
-                <h:commandButton value="Update"
-                    action="#{contactModifyParam.modifyContact()}">
-                    <f:param name="paramId"
-                        value="#{contactModifyParam.contact.id}" />
-                </h:commandButton>
-                <span>&#160;</span>
-                <h:commandButton id="reset" value="Cancel" type="reset" 
-                    action="/param/contactlistparam.xhtml?faces-redirect=true"/>
-            </p>
-         </h:form>
-
-        <p class="messages">
-            <h:messages />
-        </p>
-
-        <p>
-            <h:link value="Back to contact list"
-                outcome="/param/contactlistparam.xhtml?faces-redirect=true" />
-        </p>
-    </ui:define>
-</ui:composition>
+-->

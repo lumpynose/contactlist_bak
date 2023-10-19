@@ -48,6 +48,18 @@ public class Contact implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date birthDate;
 
+    public Contact() {
+        // empty
+    }
+
+    public Contact(final Contact _contact) {
+        this.firstName = _contact.getFirstName();
+        this.lastName = _contact.getLastName();
+        this.email = _contact.getEmail();
+        this.phoneNumber = _contact.getPhoneNumber();
+        this.birthDate = new Date(_contact.getBirthDate().getTime());
+    }
+
     public Long getId() {
         return this.id;
     }
