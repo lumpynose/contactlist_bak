@@ -1,10 +1,9 @@
-package org.objecteffects.contactlist.view.param;
+package org.objecteffects.contactlist.view;
 
 import java.io.Serializable;
 
 import org.objecteffects.contactlist.model.Contact;
 import org.objecteffects.contactlist.service.ContactService;
-import org.objecteffects.contactlist.view.ContactUtil;
 import org.slf4j.Logger;
 
 import jakarta.annotation.PostConstruct;
@@ -15,7 +14,7 @@ import jakarta.inject.Named;
 
 @Named
 @RequestScoped
-public class ContactViewParam implements Serializable {
+public class ContactView implements Serializable {
     private static final long serialVersionUID = 4694088548123087426L;
 
     @Inject
@@ -52,7 +51,7 @@ public class ContactViewParam implements Serializable {
 
         this.contactUtil.addMessage(contact, "deleted");
 
-        return "/param/contactlistparam.xhtml?faces-redirect=true";
+        return "/param/contactlist.xhtml?faces-redirect=true";
     }
 
     public String deleteContact(final Long id) {
@@ -66,7 +65,7 @@ public class ContactViewParam implements Serializable {
 
         this.contactUtil.addMessage(contact, "deleted");
 
-        return "/param/contactlistparam.xhtml?faces-redirect=true";
+        return "/param/contactlist.xhtml?faces-redirect=true";
     }
 
     public String deleteContact(final Contact contact) {
@@ -78,6 +77,6 @@ public class ContactViewParam implements Serializable {
 
         this.contactUtil.addMessage(contactCopy, "deleted");
 
-        return "/param/contactlistparam.xhtml?faces-redirect=true";
+        return "/param/contactlist.xhtml?faces-redirect=true";
     }
 }

@@ -25,7 +25,7 @@
             <h2>Contacts</h2>
 <h:form>
             <h:dataTable var="contact"
-                value="#{contactListParam.contacts}"
+                value="#{ContactList.contacts}"
                 styleClass="contactlist"
                 columnClasses="contactlist-column"
                 footerClass="contactlist-footer"
@@ -63,7 +63,7 @@
                     View/Delete
                     </f:facet>
                     <p:link value="View/Delete"
-                        outcome="/param/contactviewparam.xhtml?faces-redirect=true">
+                        outcome="/param/contactview.xhtml?faces-redirect=true">
                         <f:param name="paramId" value="#{contact.id}" />
                     </p:link>
                 </h:column>
@@ -72,12 +72,12 @@
                     Modify
                     </f:facet>
                     <p:commandButton value="Modify"
-                        action="#{contactModifyParam.fetchContact(contact.id)}">
+                        action="#{contactmodify.fetchContact(contact.id)}">
                         <f:param name="paramId" value="#{contact.id}" />
                     </p:commandButton>
                     <!--
                     <h:button value="Modify"
-                        outcome="/param/contactmodifyparam.xhtml?faces-redirect=true">
+                        outcome="/param/ContactModify.xhtml?faces-redirect=true">
                         <f:param name="paramId" value="#{contact.id}" />
                     </h:button>
                     -->

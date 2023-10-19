@@ -11,30 +11,30 @@
     <ui:define name="content">
         <f:metadata>
             <f:viewParam name="paramId"
-                value="#{contactViewParam.contact.id}" />
+                value="#{ContactView.contact.id}" />
         </f:metadata>
         <h:panelGrid columns="2" headerClass="table-header">
             <f:facet name="header">
                 <h:outputText value="Contact information" />
             </f:facet>
             <h:outputLabel for="id" value="Id" />
-            <h:outputText value="#{contactViewParam.contact.id}" />
+            <h:outputText value="#{ContactView.contact.id}" />
 
             <h:outputLabel for="email" value="Email" />
-            <h:outputText value="#{contactViewParam.contact.email}" />
+            <h:outputText value="#{ContactView.contact.email}" />
 
             <h:outputLabel for="firstname" value="First name" />
-            <h:outputText value="#{contactViewParam.contact.firstName}" />
+            <h:outputText value="#{ContactView.contact.firstName}" />
 
             <h:outputLabel for="lastname" value="Last name" />
-            <h:outputText value="#{contactViewParam.contact.lastName}" />
+            <h:outputText value="#{ContactView.contact.lastName}" />
 
             <h:outputLabel for="phonenumber" value="Phone number" />
             <h:outputText
-                value="#{contactViewParam.contact.phoneNumber}" />
+                value="#{ContactView.contact.phoneNumber}" />
 
             <h:outputLabel for="birthdate" value="Birthday" />
-            <h:outputText value="#{contactViewParam.contact.birthDate}" />
+            <h:outputText value="#{ContactView.contact.birthDate}" />
         </h:panelGrid>
 
         <hr />
@@ -43,14 +43,14 @@
             <p>
                 <!-- 
                 <h:link value="Delete"  includeViewParams="true"
-                    outcome="#{contactViewParam.deleteContact()}">
-                    <f:param name="paramId" value="#{contactViewParam.contact.id}" />
+                    outcome="#{ContactView.deleteContact()}">
+                    <f:param name="paramId" value="#{ContactView.contact.id}" />
                 </h:link>
              -->
                 <h:commandButton value="Delete"
-                    action="#{contactViewParam.deleteContact(contactViewParam.contact.id)}">
+                    action="#{contactview.deleteContact(ContactView.contact.id)}">
                     <!-- 
-                    <f:param name="paramId" value="#{contactViewParam.contact.id}" />
+                    <f:param name="paramId" value="#{ContactView.contact.id}" />
              -->
                 </h:commandButton>
             </p>
@@ -62,7 +62,7 @@
 
         <p>
             <h:link value="Back to contact list"
-                outcome="/param/contactlistparam.xhtml?faces-redirect=true" />
+                outcome="/param/contactlist.xhtml?faces-redirect=true" />
         </p>
     </ui:define>
 </ui:composition>

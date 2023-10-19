@@ -9,7 +9,7 @@
     <!--
     <f:metadata>
         <f:viewParam name="paramId"
-            value="#{contactModifyParam.contact.id}" />
+            value="#{ContactModify.contact.id}" />
     </f:metadata>
     -->
     <ui:define name="content">
@@ -20,43 +20,43 @@
                 </f:facet>
 
                 <h:outputLabel for="id" value="Id" />
-                <h:outputText value="#{contactModifyParam.contact.id}" />
+                <h:outputText value="#{ContactModify.contact.id}" />
 
                 <h:outputLabel for="email" value="Email address" />
                 <h:inputText id="email" title="Email address"
-                    value="#{contactModifyParam.contact.email}"
+                    value="#{ContactModify.contact.email}"
                     required="true" />
 
                 <h:outputLabel for="firstname" value="First name" />
                 <h:inputText id="firstName" title="First name"
-                    value="#{contactModifyParam.contact.firstName}"
+                    value="#{ContactModify.contact.firstName}"
                     required="true" />
 
                 <h:outputLabel for="lastname" value="Last name" />
                 <h:inputText id="lastName" title="Last name"
-                    value="#{contactModifyParam.contact.lastName}"
+                    value="#{ContactModify.contact.lastName}"
                     required="true" />
 
                 <h:outputLabel for="phonenumber" value="Phone number" />
                 <h:inputText id="phoneNumber" title="Phone number"
-                    value="#{contactModifyParam.contact.phoneNumber}"
+                    value="#{ContactModify.contact.phoneNumber}"
                     required="true" />
 
                 <h:outputLabel for="birthdate" value="Birthday" />
                 <h:inputText id="birthDate" title="Birthday"
-                    value="#{contactModifyParam.contact.birthDate}">
+                    value="#{ContactModify.contact.birthDate}">
                     <f:convertDateTime type="date" pattern="yyyy-MM-dd" />
                 </h:inputText>
             </h:panelGrid>
             <p>
                 <h:commandButton value="Update"
-                    action="#{contactModifyParam.modifyContact()}">
+                    action="#{ContactModify.modifyContact()}">
                     <f:param name="paramId"
-                        value="#{contactModifyParam.contact.id}" />
+                        value="#{ContactModify.contact.id}" />
                 </h:commandButton>
                 <span>&#160;</span>
                 <h:commandButton id="reset" value="Cancel" type="reset"
-                    action="/param/contactlistparam.xhtml?faces-redirect=true" />
+                    action="/param/contactlist.xhtml?faces-redirect=true" />
             </p>
         </h:form>
 
@@ -66,7 +66,7 @@
 
         <p>
             <h:link value="Back to contact list"
-                outcome="/param/contactlistparam.xhtml?faces-redirect=true" />
+                outcome="/param/contactlist.xhtml?faces-redirect=true" />
         </p>
     </ui:define>
 </ui:composition>

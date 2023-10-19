@@ -8,7 +8,7 @@
     xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
     <ui:define name="content">
         <h2>Contacts</h2>
-        <h:dataTable var="contact" value="#{contactListParam.contacts}"
+        <h:dataTable var="contact" value="#{ContactList.contacts}"
             styleClass="contactlist" columnClasses="contactlist-column"
             footerClass="contactlist-footer"
             headerClass="contactlist-header"
@@ -45,7 +45,7 @@
                     View/Delete
                     </f:facet>
                 <h:link value="View/Delete" includeViewParams="true"
-                    outcome="contactviewparam.xhtml">
+                    outcome="contactview.xhtml">
                     <f:param name="paramId" value="#{contact.id}" />
                 </h:link>
             </h:column>
@@ -54,7 +54,7 @@
                     Modify
                     </f:facet>
                 <h:link value="Modify" includeViewParams="true"
-                    outcome="contactmodifyparam.xhtml">
+                    outcome="contactmodify.xhtml">
                     <f:param name="paramId" value="#{contact.id}" />
                 </h:link>
             </h:column>
