@@ -62,19 +62,19 @@
                     <f:facet name="header">
                     View/Delete
                     </f:facet>
-                    <p:link value="View/Delete"
+                    <h:link value="View/Delete"
                         outcome="/contactview.xhtml?faces-redirect=true">
                         <f:param name="paramId" value="#{contact.id}" />
-                    </p:link>
+                    </h:link>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
                     Modify
                     </f:facet>
-                    <p:commandButton value="Modify"
+                    <h:commandButton value="Modify"
                         action="#{contactModify.fetchContact(contact.id)}">
                         <f:param name="paramId" value="#{contact.id}" />
-                    </p:commandButton>
+                    </h:commandButton>
                 </h:column>
             </h:dataTable>
 </h:form>
