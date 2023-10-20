@@ -14,6 +14,6 @@ public class ContactsActionListener implements ActionListener {
     @Override
     public void processAction(final ActionEvent event)
             throws AbortProcessingException {
-        this.log.debug("action: {}", event.getPhaseId());
+        this.log.debug("action phase id: {}", event.getPhaseId());
     }
 }

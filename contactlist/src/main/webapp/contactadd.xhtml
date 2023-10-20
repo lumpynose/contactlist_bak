@@ -8,7 +8,7 @@
     xmlns:of="http://omnifaces.org/functions"
     xmlns:p="http://primefaces.org/ui"
     xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
-    
+
 <h:head>
     <title>Add contact</title>
     <h:outputStylesheet name="css/stylesheet.css" />
@@ -50,11 +50,21 @@
             </h:inputText>
 
             <h:commandButton id="submit" value="Add contact"
-                action="#{contactAdd.zzzaddContact()}">
+                action="#{contactAdd.addContact()}">
             </h:commandButton>
             <h:commandButton id="reset" value="Reset" type="reset">
             </h:commandButton>
         </h:panelGrid>
     </h:form>
+
+    <p class="messages">
+        <h:messages />
+    </p>
+    
+    <p>
+        <h:link value="Back to contact list"
+            outcome="/contactlist.xhtml?faces-redirect=true" />
+    </p>
+
 </h:body>
 </html>
