@@ -47,6 +47,15 @@
         <password>secret</password>
     </data-source>
 
+    <data-source>
+        <name>java:global/DataSourceContactsDroplet</name>
+        <class-name>org.postgresql.ds.PGSimpleDataSource</class-name>
+        <server-name>146.190.149.101</server-name>
+        <database-name>test</database-name>
+        <user>test</user>
+        <password>secret</password>
+    </data-source>
+
     <welcome-file-list>
         <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>

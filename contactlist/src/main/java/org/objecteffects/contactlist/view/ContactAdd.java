@@ -53,7 +53,9 @@ public class ContactAdd implements Serializable {
         return "/contactlist.xhtml?faces-redirect=true";
     }
 
-    public void validateEmail(final FacesContext ctx, final UIComponent cmp,
+    public void validateEmail(
+            @SuppressWarnings("unused") final FacesContext ctx,
+            @SuppressWarnings("unused") final UIComponent cmp,
             final Object value) {
         final String email = (String) value;
 

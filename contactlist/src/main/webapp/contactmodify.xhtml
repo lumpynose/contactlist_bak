@@ -68,7 +68,7 @@
                     <h:inputText id="birthdate" name="birthDate"
                         title="Birthday"
                         value="#{contact.birthDate}">
-                        <f:convertDateTime type="date"
+                        <f:convertDateTime type="localDate"
                             pattern="yyyy-MM-dd" />
                     </h:inputText>
                     <h:message for="birthdate" />

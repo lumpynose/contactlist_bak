@@ -1,7 +1,5 @@
 package org.objecteffects.contactlist.view;
 
-import java.io.IOException;
-
 import org.objecteffects.contactlist.model.Contact;
 import org.slf4j.Logger;
 
@@ -60,7 +58,7 @@ public class ContactUtil {
 //        return id;
 //    }
 
-    public String addToFlash(final Contact contact) throws IOException {
+    public String addToFlash(final Contact contact) {
         this.log.debug("addToFlash: id: {}", contact);
 
         final Flash flash = FacesContext.getCurrentInstance()

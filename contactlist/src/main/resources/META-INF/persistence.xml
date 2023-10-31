@@ -6,7 +6,8 @@
         http://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
     <persistence-unit name="PersistenceUnitName"
         transaction-type="JTA">
-        <jta-data-source>java:global/DataSourceContacts</jta-data-source>
+<!--         <jta-data-source>java:global/DataSourceContacts</jta-data-source> -->
+        <jta-data-source>java:global/DataSourceContactsDroplet</jta-data-source>
         <properties>
             <property
                 name="jakarta.persistence.schema-generation.database.action"

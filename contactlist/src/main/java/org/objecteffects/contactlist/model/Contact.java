@@ -1,7 +1,7 @@
 package org.objecteffects.contactlist.model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -46,7 +46,7 @@ public class Contact implements Serializable {
 
     @Column
     @Temporal(TemporalType.DATE)
-    private Date birthDate;
+    private LocalDate birthDate;
 
     public Contact() {
         // empty
@@ -57,7 +57,8 @@ public class Contact implements Serializable {
         this.lastName = _contact.getLastName();
         this.email = _contact.getEmail();
         this.phoneNumber = _contact.getPhoneNumber();
-        this.birthDate = new Date(_contact.getBirthDate().getTime());
+        // this.birthDate = new Date(_contact.getBirthDate().getTime());
+        this.birthDate = _contact.getBirthDate();
     }
 
     public Long getId() {
@@ -100,11 +101,11 @@ public class Contact implements Serializable {
         this.phoneNumber = _phoneNumber;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return this.birthDate;
     }
 
-    public void setBirthDate(final Date _birthDate) {
+    public void setBirthDate(final LocalDate _birthDate) {
         this.birthDate = _birthDate;
     }
 
