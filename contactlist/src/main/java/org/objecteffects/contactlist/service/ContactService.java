@@ -24,6 +24,9 @@ public class ContactService implements Serializable {
     @Inject
     private transient Logger log;
 
+    /**
+     * @param contact
+     */
     public void mergeContact(final Contact contact) {
         this.log.debug("adding/merging: {}", contact);
 

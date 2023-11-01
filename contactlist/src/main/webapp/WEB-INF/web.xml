@@ -38,6 +38,7 @@
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
 
+<!--
     <data-source>
         <name>java:global/DataSourceContacts</name>
         <class-name>org.postgresql.ds.PGSimpleDataSource</class-name>
@@ -54,6 +55,14 @@
         <database-name>test</database-name>
         <user>test</user>
         <password>secret</password>
+    </data-source>
+-->
+    <data-source>
+        <name>java:global/DataSourceContactsH2</name>
+        <class-name>org.h2.jdbcx.JdbcDataSource</class-name>
+        <url>jdbc:h2:/home/rusty/test</url>
+        <user>sa</user>
+        <password>sa</password>
     </data-source>
 
     <welcome-file-list>
